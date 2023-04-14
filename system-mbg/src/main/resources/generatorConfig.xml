@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--代码自动生成配置-->
+<generatorConfiguration>
+    <!--引入配置文件-->
+    <properties resource="generator.properties"/>
+    <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--生成的Java文件的编码-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--格式化Java代码-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!--格式化Xml代码-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!--*********************************插件*************************************-->
+        <!--生成的实体类自动实现Serializable序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--为生成的实体类创建一个toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--生成mapper.xml时覆盖原文件（原来是会直接追加到原文件中的-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <!--*********************************生成注释*************************************-->
+        <!--可以自定义生成model的代码注释-->
+        <commentGenerator type="com.example.mall_study.mbg.CommentGenerator">
+            <!--去除自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!--去除生成日期-->
+            <property name="suppressDate" value="true"/>
+            <!--是否把表中的备注添加到注释中-->
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <!--*********************************数据库配置*************************************-->
+        <!--配置数据库连接-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+            <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+        <!--*********************************指定生成文件路径*************************************-->
+        <!--指定生成model的路径-->
+        <javaModelGenerator targetPackage="com.example.mbg.model" targetProject="src\main\java"/>
+        <!--指定生成mapper.xml的路径-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources"/>
+        <!--指定生成mapper接口的的路径-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.mbg.mapper"
+                             targetProject="src\main\java"/>
+        <!--*********************************指定要生成的表*************************************-->
+        <table tableName="ums_resource">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

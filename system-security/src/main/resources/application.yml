@@ -1,0 +1,25 @@
+# 访问授权白名单
+secure:
+  ignored:
+    urls:
+      - /swagger**/**
+      - /**/v2/api-docs
+      - /**/v3/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /doc.html
+      - /webjars/*
+      - /index.html"
+      - /esProduct/**"
+      - /sso/**"
+      - /toLogin"
+      - /admin/login
+
+# Jwt配置
+#jwt:
+#  tokenHeader: Authorization #JWT存储的请求头
+#  tokenPrefix: Bearer  #JWT负载前缀
+#  secret: mySecret #JWT加解密使用的密钥
+#  expiration: 30 #JWT的超期限时间(单位分)
