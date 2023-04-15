@@ -30,10 +30,6 @@ public class EsProductServiceImpl implements EsProductService {
     @Autowired
     private EsProductRepository productRepository;
 
-    //操作DLS语句
-    @Autowired
-    private RestHighLevelClient restHighLevelClient;
-
     /**
      * 导入数据
      * @return
@@ -92,23 +88,6 @@ public class EsProductServiceImpl implements EsProductService {
     @Override
     public Page<EsProduct> noteSearch(String name, Integer pageNum, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-//        SearchRequest request = new SearchRequest("pms");
-//        MatchAllQueryBuilder matchAllQueryBuilder = QueryBuilders.matchAllQuery();
-//        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-//        sourceBuilder.query(matchAllQueryBuilder);
-//        sourceBuilder.timeout(new TimeValue(20, TimeUnit.SECONDS));
-//        sourceBuilder.from(0);  //查询结果从第几条数据开始返回
-//        sourceBuilder.size(5);//一次返回几条数据
-//        request.source(sourceBuilder);
-//        SearchResponse response = null;
-//        try {
-//            response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        for (SearchHit fields : response.getHits().getHits()) {
-//            System.out.println(fields.getSourceAsString());
-//        }
         return productRepository.findByBrandName(name,pageable);
     }
 

@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
   application:
     name: modules-test
@@ -11,6 +10,19 @@ spring:
     url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
     password: root
+    druid:
+      initial-size: 5 #连接池初始化大小
+      min-idle: 10 #最小空闲连接数
+      max-active: 20 #最大连接数
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        enabled: true
+        url-pattern: "/druid/**"
+        login-username: admin
+        login-password: admin
   # 解决Swagger与2.6以上springboot不兼容
   mvc:
     pathmatch:
@@ -39,7 +51,7 @@ mybatis:
     - classpath:*/dao/*.xml
     - classpath*:com.**.mapper/*.xml
 
-#**************************************自定义属性*********************************************
+#***********************************************自定义属性***********************************************
 # 自定义redis属性
 redis:
   key:
@@ -77,5 +89,6 @@ secure:
       - /index.html"
       - /esProduct/**"
       - /sso/**"
+      - /actuator/**
+      - /druid/**
       - /toLogin"
-      - /admin/login

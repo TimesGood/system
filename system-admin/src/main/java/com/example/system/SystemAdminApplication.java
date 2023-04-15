@@ -8,14 +8,7 @@ import org.springframework.context.ApplicationContext;
 public class SystemAdminApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(SystemAdminApplication.class, args);
-		String[] beans = ctx.getBeanDefinitionNames();
-
-		for(String bean:beans){
-
-			System.out.println(bean);
-
-		}
+		SpringApplication.run(SystemAdminApplication.class, args);
 	}
 
 }

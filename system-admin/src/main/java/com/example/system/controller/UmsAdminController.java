@@ -73,7 +73,7 @@ public class UmsAdminController {
 
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "adminId",value = "用户id" )
+            @ApiImplicitParam(name = "adminId",value = "用户id",dataTypeClass = Long.class)
     })
     @RequestMapping(value = "/permission", method = RequestMethod.GET)
     @ResponseBody
@@ -84,7 +84,7 @@ public class UmsAdminController {
 
     @ApiOperation("获取用户角色")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "adminId",value = "用户id" )
+            @ApiImplicitParam(name = "adminId",value = "用户id",dataTypeClass = Long.class)
     })
     @RequestMapping(value = "/role", method = RequestMethod.GET)
     @ResponseBody

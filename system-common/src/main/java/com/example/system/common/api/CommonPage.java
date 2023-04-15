@@ -21,10 +21,10 @@ public class CommonPage<T> {
     @ApiModelProperty("总数")
     private Long total;
     @ApiModelProperty("请求结果")
-    private List<T> list;
+    private List<T> data;
 
     /**
-     * 将PageHelper分页后的list转为分页信息
+     * 将PageHelper分页后数据格式化
      */
     public static <T> CommonPage<T> restPage(List<T> list) {
         CommonPage<T> result = new CommonPage<T>();
@@ -33,11 +33,11 @@ public class CommonPage<T> {
         result.setPageNum(pageInfo.getPageNum());
         result.setPageSize(pageInfo.getPageSize());
         result.setTotal(pageInfo.getTotal());
-        result.setList(pageInfo.getList());
+        result.setData(pageInfo.getList());
         return result;
     }
     /**
-     * 将SpringData分页后的list转为分页信息
+     * 将SpringData分页后数据格式化
      */
     public static <T> CommonPage<T> restPage(Page<T> pageInfo) {
         CommonPage<T> result = new CommonPage<T>();
@@ -45,7 +45,7 @@ public class CommonPage<T> {
         result.setPageNum(pageInfo.getNumber());
         result.setPageSize(pageInfo.getSize());
         result.setTotal(pageInfo.getTotalElements());
-        result.setList(pageInfo.getContent());
+        result.setData(pageInfo.getContent());
         return result;
     }
 
@@ -73,12 +73,12 @@ public class CommonPage<T> {
         this.totalPage = totalPage;
     }
 
-    public List<T> getList() {
-        return list;
+    public List<T> getData() {
+        return data;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
     public Long getTotal() {
@@ -96,7 +96,7 @@ public class CommonPage<T> {
                 ", pageSize=" + pageSize +
                 ", totalPage=" + totalPage +
                 ", total=" + total +
-                ", list=" + list +
+                ", data=" + data +
                 '}';
     }
 }

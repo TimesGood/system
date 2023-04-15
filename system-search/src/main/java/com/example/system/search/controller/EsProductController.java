@@ -39,7 +39,7 @@ public class EsProductController {
 
     @ApiOperation(value = "根据id删除商品")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "id",value = "商品id")
+            @ApiImplicitParam(name = "id",value = "商品id",dataTypeClass = Long.class)
     })
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
@@ -50,7 +50,7 @@ public class EsProductController {
 
     @ApiOperation(value = "根据id批量删除商品")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "ids",value = "商品id")
+            @ApiImplicitParam(name = "ids",value = "商品id",dataTypeClass = Long.class)
     })
     @RequestMapping(value = "/delete/batch", method = RequestMethod.POST)
     @ResponseBody
@@ -61,7 +61,7 @@ public class EsProductController {
 
     @ApiOperation(value = "根据id创建商品")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "id",value = "商品id")
+            @ApiImplicitParam(name = "id",value = "商品id",dataTypeClass = Long.class)
     })
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -76,9 +76,9 @@ public class EsProductController {
 
     @ApiOperation(value = "简单搜索")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "keyword",value = "商品名"),
-            @ApiImplicitParam(name = "pageNum",value = "页"),
-            @ApiImplicitParam(name = "pageSize",value = "一页数据量")
+            @ApiImplicitParam(name = "keyword",value = "商品名",dataTypeClass = String.class),
+            @ApiImplicitParam(name = "pageNum",value = "页",dataTypeClass = Integer.class),
+            @ApiImplicitParam(name = "pageSize",value = "一页数据量",dataTypeClass = Integer.class)
     })
     @RequestMapping(value = "/search/simple", method = RequestMethod.GET)
     @ResponseBody
@@ -90,9 +90,9 @@ public class EsProductController {
     }
     @ApiOperation(value = "注解编辑DLS语句查询商品")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "name",value = "商品名"),
-            @ApiImplicitParam(name = "pageNum",value = "页"),
-            @ApiImplicitParam(name = "pageSize",value = "一页数据量")
+            @ApiImplicitParam(name = "name",value = "商品名",dataTypeClass = String.class),
+            @ApiImplicitParam(name = "pageNum",value = "页",dataTypeClass = Integer.class),
+            @ApiImplicitParam(name = "pageSize",value = "一页数据量",dataTypeClass = Integer.class)
     })
     @RequestMapping(value = "/searchTest/simple",method = RequestMethod.GET)
     @ResponseBody

@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Setting;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +17,8 @@ import java.util.List;
  * 需要中文分词的设置成@Field(analyzer = "ik_max_word",type = FieldType.Text)类型。
  */
 @ApiModel("商品")
-@Document(indexName = "pms",shards = 1,replicas = 0)
+@Document(indexName = "pms")
+@Setting(shards = 1,replicas = 0)
 public class EsProduct implements Serializable {
     private static final long serialVersionUID = -1L;
     @Id
