@@ -1,10 +1,9 @@
-package com.example.system.service.impl;
+package com.example.system.demo.service.impl;
 
 import com.example.system.mbg.mapper.PmsBrandMapper;
 import com.example.system.mbg.model.PmsBrand;
 import com.example.system.mbg.model.PmsBrandExample;
-import com.example.system.service.PmsBrandService;
-import com.github.pagehelper.Page;
+import com.example.system.demo.service.PmsBrandService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

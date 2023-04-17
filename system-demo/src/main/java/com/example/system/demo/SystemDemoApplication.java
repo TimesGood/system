@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.system.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example.system.**")
 public class SystemDemoApplication {
 
     public static void main(String[] args) {

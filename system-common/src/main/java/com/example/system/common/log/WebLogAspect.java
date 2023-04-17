@@ -104,6 +104,7 @@ public class WebLogAspect {
         String urlStr = request.getRequestURL().toString();
         //获取请求该方法的请求地址
         webLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
+        webLog.setUsername(request.getRemoteUser());
         webLog.setIp(request.getRemoteUser());
         //请求方式
         webLog.setMethod(request.getMethod());

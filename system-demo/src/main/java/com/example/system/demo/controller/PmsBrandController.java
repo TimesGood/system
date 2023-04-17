@@ -1,9 +1,9 @@
-package com.example.system.controller;
+package com.example.system.demo.controller;
 
 import com.example.system.common.api.CommonPage;
 import com.example.system.common.api.CommonResult;
 import com.example.system.mbg.model.PmsBrand;
-import com.example.system.service.PmsBrandService;
+import com.example.system.demo.service.PmsBrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

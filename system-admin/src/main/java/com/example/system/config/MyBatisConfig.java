@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @MapperScan({
-        "com.example.system.mbg.mapper",
-        "com.example.system.dao",
-        "com.example.system.*.dao"
+        "com.example.*.mbg.mapper",
+        "com.example.*.dao",
+        "com.example.*.*.dao"
 })//指定mapper配置扫描路径
 public class MyBatisConfig {
 }

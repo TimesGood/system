@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
@@ -27,13 +29,31 @@ public abstract class BaseSwaggerConfig {
 
     /**
      * 生成Api文档界面的配置
+     * 默认配置，一些描述信息将根据启动模块中的swaggerProperties中获取
+     * 如果需要拓展多分组Api，请重写该方法，并且Bean与分组名都必须与其他模块不同
+     * 如果还想保留该默认规则，请调用createDocker构造其他Api分组
      * @return
      */
-    @Bean
-    public Docket createRestApi(){
+    @ConditionalOnMissingBean(name = "defaultApi")
+    @Bean("defaultApi")
+    public Docket defaultApi(){
+        SwaggerProperties build = SwaggerProperties.builder()
+                .groupName("defaultApi")
+                .enable(true)
+                .applicationName("后台管理系统")
+                .version("1.0")
+                .description("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                .build();
+        return createDocket(build);
+    }
+
+    public Docket createDocket(){
         SwaggerProperties swaggerProperties = swaggerProperties();
+        return createDocket(swaggerProperties);
+    }
+    public Docket createDocket(SwaggerProperties swaggerProperties) {
         return new Docket(DocumentationType.OAS_30)//Swagger样式类型
-                .groupName("webApi")
+                .groupName(swaggerProperties.getGroupName())
                 //是否开启swagger
                 .enable(swaggerProperties.getEnable())
                 //页面详细
@@ -50,7 +70,7 @@ public abstract class BaseSwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 //支持的通讯协议
-                .protocols(new LinkedHashSet<>(Arrays.asList("https","http")))
+                .protocols(new LinkedHashSet<>(Arrays.asList("https", "http")))
                 //授权信息设置，必要的header token等认证信息
                 .securitySchemes(securitySchemes())
                 //授权信息应用的接口路径
@@ -116,6 +136,8 @@ public abstract class BaseSwaggerConfig {
      *     pathmatch:
      *       matching-strategy: ant_path_matcher
      */
+    @ConditionalOnMissingBean(name = "generateBeanPostProcessor")
+    @Bean("generateBeanPostProcessor")
     public BeanPostProcessor generateBeanPostProcessor(){
         return new BeanPostProcessor() {
 

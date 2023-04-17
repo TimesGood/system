@@ -4,6 +4,7 @@ import lombok.Builder;
 
 @Builder
 public class SwaggerProperties {
+    private String groupName;
     /**
      * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
      */
@@ -23,7 +24,15 @@ public class SwaggerProperties {
      * 项目描述信息
      */
     private String description;
- 
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
     public Boolean getEnable() {
         return enable;
     }

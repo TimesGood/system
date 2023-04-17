@@ -28,12 +28,13 @@
         </dependency>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>system-security</artifactId>
+            <artifactId>system-admin</artifactId>
         </dependency>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>system-admin</artifactId>
+            <artifactId>system-security</artifactId>
         </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.example</groupId>-->
 <!--            <artifactId>system-search</artifactId>-->

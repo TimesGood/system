@@ -36,7 +36,7 @@
 		<druid.version>1.2.14</druid.version><!--数据库驱动-->
 		<hutool.version>5.8.9</hutool.version><!--hutool工具包-->
 		<springfox-swagger.version>3.0.0</springfox-swagger.version><!--swagger-->
-		<knife4j-starter>3.0.3</knife4j-starter><!--swagger增强-->
+		<knife4j.version>3.0.0</knife4j.version><!--swagger增强-->
 		<mybatis-generator.version>1.3.7</mybatis-generator.version><!--mybatis代码生成器-->
 		<mybatis.version>3.5.10</mybatis.version><!--mybatis-->
 		<mysql-connector.version>8.0.29</mysql-connector.version><!--mysql连接池-->
@@ -94,6 +94,12 @@
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-boot-starter</artifactId>
 				<version>${springfox-swagger.version}</version>
+			</dependency>
+			<!--Swagger增强-->
+			<dependency>
+				<groupId>com.github.xiaoymin</groupId>
+				<artifactId>knife4j</artifactId>
+				<version>${knife4j.version}</version>
 			</dependency>
 			<!-- MyBatis-->
 			<dependency>
@@ -161,7 +167,7 @@
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
 		</dependency>
-		<!--lombok注解-->
+		<!--lombok代码功能增强，通过注解省略get、set等方法，以及一些其他功能注解的使用-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -174,6 +180,51 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--使用maven创建docker镜像-->
+<!--			<plugin>-->
+<!--				<groupId>io.fabric8</groupId>-->
+<!--				<artifactId>docker-maven-plugin</artifactId>-->
+<!--				<version>${docker.maven.plugin.version}</version>-->
+<!--				<executions>-->
+<!--					&lt;!&ndash;如果想在项目打包时构建镜像添加&ndash;&gt;-->
+<!--					<execution>-->
+<!--						<id>build-image</id>-->
+<!--						<phase>package</phase>-->
+<!--						<goals>-->
+<!--							<goal>build</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; Docker 远程管理地址&ndash;&gt;-->
+<!--					<dockerHost>${docker.host}</dockerHost>-->
+<!--					<images>-->
+<!--						<image>-->
+<!--							&lt;!&ndash;定义镜像名称&ndash;&gt;-->
+<!--							<name>system/${project.name}:${project.version}</name>-->
+<!--							&lt;!&ndash;定义镜像构建行为&ndash;&gt;-->
+<!--							<build>-->
+<!--								&lt;!&ndash;定义基础镜像&ndash;&gt;-->
+<!--								<from>openjdk:8</from>-->
+<!--								<args>-->
+<!--									<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--								</args>-->
+<!--								&lt;!&ndash;定义哪些文件拷贝到容器中&ndash;&gt;-->
+<!--								<assembly>-->
+<!--									&lt;!&ndash;定义拷贝到容器的目录&ndash;&gt;-->
+<!--									<targetDir>/</targetDir>-->
+<!--									&lt;!&ndash;只拷贝生成的jar包&ndash;&gt;-->
+<!--									<descriptorRef>artifact</descriptorRef>-->
+<!--								</assembly>-->
+<!--								&lt;!&ndash;定义容器启动命令&ndash;&gt;-->
+<!--								<entryPoint>["java", "-jar","-Dspring.profiles.active=prod","/${project.build.finalName}.jar"]</entryPoint>-->
+<!--								&lt;!&ndash;定义维护者&ndash;&gt;-->
+<!--								<maintainer>zhangwenke</maintainer>-->
+<!--							</build>-->
+<!--						</image>-->
+<!--					</images>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
