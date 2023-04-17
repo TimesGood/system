@@ -30,7 +30,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<skipTests>true</skipTests><!--当使用spring-boot-maven-plugin打包时，会自动执行test单元测试，设为true取消执行test-->
-		<docker.host>http://192.168.3.101:2375</docker.host><!--docker远程地址-->
+		<docker.host>http://192.168.3.101:2375</docker.host><!--远程docker地址-->
 		<docker.maven.plugin.version>0.40.2</docker.maven.plugin.version><!--docker打包插件-->
 		<pagehelper-starter.version>1.4.5</pagehelper-starter.version><!--分页插件-->
 		<druid.version>1.2.14</druid.version><!--数据库驱动-->
@@ -43,6 +43,7 @@
 		<jjwt.version>0.9.1</jjwt.version><!--jwt-->
 		<hibernate.version>6.1.5.Final</hibernate.version><!--参数校验-->
 		<jaxb-api.version>2.3.1</jaxb-api.version><!--解决java11不兼容的问题-->
+		<fastjson.version>2.0.28</fastjson.version><!--alibaba Json解析-->
 	</properties>
 
 	<dependencyManagement>
@@ -137,6 +138,11 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -164,8 +170,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
 		</dependency>
 		<!--lombok代码功能增强，通过注解省略get、set等方法，以及一些其他功能注解的使用-->
 		<dependency>

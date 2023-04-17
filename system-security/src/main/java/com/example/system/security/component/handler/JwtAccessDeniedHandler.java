@@ -1,7 +1,6 @@
 package com.example.system.security.component.handler;
 
-import cn.hutool.json.JSONUtil;
-
+import com.alibaba.fastjson.JSONObject;
 import com.example.system.common.api.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,7 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler{
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
+        response.getWriter().println(JSONObject.toJSON(CommonResult.forbidden(e.getMessage())));
         response.getWriter().flush();
     }
 }

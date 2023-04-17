@@ -1,6 +1,6 @@
 package com.example.system.security.component.handler;
 
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.example.system.common.api.CommonResult;
 import com.example.system.security.common.util.JwtTokenUtil;
 import com.example.system.security.config.JwtProperties;
@@ -42,7 +42,7 @@ public class JwtLoginSuccessHandler implements AuthenticationSuccessHandler {
         //处理编码方式，防止中文乱码的情况
         response.setContentType("application/json;charset=utf-8");
         //塞到HttpServletResponse中返回给前台
-        response.getWriter().print(JSONUtil.parse(CommonResult.success(tokenMap)));
+        response.getWriter().print(JSONObject.toJSON(CommonResult.success(tokenMap)));
         response.getWriter().flush();
     }
 }

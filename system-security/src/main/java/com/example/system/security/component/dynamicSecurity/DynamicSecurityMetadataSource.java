@@ -1,7 +1,5 @@
 package com.example.system.security.component.dynamicSecurity;
 
-import cn.hutool.core.util.URLUtil;
-
 import com.example.system.common.api.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -41,13 +39,12 @@ public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMe
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         if(configAttributeMap == null) loadDataSource();
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
-        String path = URLUtil.getPath(requestUrl);
         PathMatcher pathMatcher = new AntPathMatcher();
         //筛选配置有该资源的资源
         List<ConfigAttribute> collect = configAttributeMap
                 .entrySet()
                 .stream()
-                .filter(f -> pathMatcher.match(f.getKey(), path))
+                .filter(f -> pathMatcher.match(f.getKey(), requestUrl))
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
         if(!CollectionUtils.isEmpty(collect)) return collect;

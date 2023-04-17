@@ -1,6 +1,6 @@
 package com.example.system.security.component.handler;
 
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.example.system.common.api.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class JwtSessionInformationExpiredStrategy implements SessionInformationE
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
         LOGGER.info("会话失效处理");
         HttpServletResponse response = event.getResponse();
-        response.getWriter().print(JSONUtil.parse(CommonResult.failed("您在另一处已登录")));
+        response.getWriter().print(JSONObject.toJSON(CommonResult.failed("您在另一处已登录")));
         response.getWriter().flush();
     }
 }

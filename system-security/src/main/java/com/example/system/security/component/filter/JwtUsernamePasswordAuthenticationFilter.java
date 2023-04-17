@@ -1,6 +1,6 @@
 package com.example.system.security.component.filter;
 
-import cn.hutool.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import com.example.system.security.component.handler.JwtLoginFailureHandler;
 import com.example.system.security.component.handler.JwtLoginSuccessHandler;
 import org.slf4j.Logger;
@@ -57,15 +57,15 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
                 while ((inputStr = streamReader.readLine()) != null){
                     responseStrBuilder.append(inputStr);
                 }
-                json = new JSONObject(responseStrBuilder);
+                json = JSONObject.parseObject(responseStrBuilder.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //把取得的json对象根据key取得里面的用户名和密码
             UsernamePasswordAuthenticationToken authenticationToken = null;
             if(json !=null) {
-                String username = json.getStr(this.getUsernameParameter());
-                String password = json.getStr(this.getPasswordParameter());
+                String username = json.getString(this.getUsernameParameter());
+                String password = json.getString(this.getPasswordParameter());
                 if(username == null) username = "";
                 if(password == null) password = "";
                 username = username.trim();
