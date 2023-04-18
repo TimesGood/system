@@ -24,7 +24,6 @@ import java.io.IOException;
  */
 
 public class DynamicSecurityFilter extends AbstractSecurityInterceptor implements Filter {
-
     @Autowired
     private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 

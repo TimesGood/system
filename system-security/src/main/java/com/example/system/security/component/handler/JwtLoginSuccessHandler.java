@@ -23,14 +23,12 @@ import java.util.Map;
  */
 //@Component
 public class JwtLoginSuccessHandler implements AuthenticationSuccessHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtLoginSuccessHandler.class);
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtProperties jwtProperties;
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        LOGGER.info("登录成功处理");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         //制作token
         String token = jwtTokenUtil.generateToken(userDetails);

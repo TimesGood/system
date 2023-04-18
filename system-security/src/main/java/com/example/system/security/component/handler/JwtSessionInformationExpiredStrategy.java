@@ -16,12 +16,10 @@ import java.io.IOException;
  */
 //@Component
 public class JwtSessionInformationExpiredStrategy implements SessionInformationExpiredStrategy {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtSessionInformationExpiredStrategy.class);
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
-        LOGGER.info("会话失效处理");
         HttpServletResponse response = event.getResponse();
-        response.getWriter().print(JSONObject.toJSON(CommonResult.failed("您在另一处已登录")));
+        response.getWriter().print(JSONObject.toJSON(CommonResult.failed("您已在另一处登录")));
         response.getWriter().flush();
     }
 }

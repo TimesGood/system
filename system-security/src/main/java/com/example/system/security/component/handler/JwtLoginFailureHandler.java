@@ -21,10 +21,8 @@ import java.io.IOException;
  */
 //@Component
 public class JwtLoginFailureHandler implements AuthenticationFailureHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtLoginFailureHandler.class);
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        LOGGER.info("登录失败处理");
         CommonResult<String> unauthorized = null;
         //可根据UserDetailsServiceImpl中抛出的异常返回不同信息
         if (exception instanceof AccountExpiredException) {

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface UmsAdminService {
     /**
-     * 根据用户名获取后台管理员
+     * 根据用户名获取用户信息
      */
     UmsAdmin getAdminByUsername(String username);
 
@@ -35,15 +35,6 @@ public interface UmsAdminService {
      * @return
      */
     String logout();
-
-    /**
-     * 获取用户所有权限（包括角色权限和+-权限）
-     */
-    List<UmsPermission> getPermissionList(Long adminId);
-
-    List<UmsPermission> getPermissionListByUri(String uri);
-
-    List<UmsRole> getRoleList(Long id);
 
     List<UmsResource> getResourceList(Long adminId);
 

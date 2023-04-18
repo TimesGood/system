@@ -3,7 +3,7 @@ package com.example.system.service.impl;
 
 import com.example.system.security.common.util.JwtTokenUtil;
 import com.example.system.dao.UmsAdminRoleRelationDao;
-import com.example.system.dto.AdminUserDetails;
+import com.example.system.bean.AdminUserDetails;
 import com.example.system.mbg.mapper.UmsAdminMapper;
 import com.example.system.mbg.model.*;
 import com.example.system.service.UmsAdminService;
@@ -98,22 +98,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
         return null;
     }
-
-    @Override
-    public List<UmsPermission> getPermissionList(Long adminId) {
-        return adminRoleRelationDao.getPermissionList(adminId);
-    }
-
-    @Override
-    public List<UmsPermission> getPermissionListByUri(String uri) {
-        return adminRoleRelationDao.getPermissionListByUri(uri);
-    }
-
-    @Override
-    public List<UmsRole> getRoleList(Long adminId) {
-        return adminRoleRelationDao.getRoleList(adminId);
-    }
-
     @Override
     public List<UmsResource> getResourceList(Long adminId) {
         return adminRoleRelationDao.getResourceList(adminId);

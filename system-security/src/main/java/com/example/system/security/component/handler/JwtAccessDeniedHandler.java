@@ -17,10 +17,8 @@ import java.io.IOException;
  */
 //@Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler{
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAccessDeniedHandler.class);
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
-        LOGGER.info("用户没有权限处理");
         //允许跨域响应头
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control","no-cache");

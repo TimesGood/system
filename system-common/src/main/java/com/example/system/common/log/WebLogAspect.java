@@ -46,7 +46,7 @@ public class WebLogAspect {
      * 切入点
      * execution(方法修饰符 返回类型 方法所属的包.类名.方法名称(方法参数)
      */
-    @Pointcut("execution(public * com.example.system.*.controller.*.*(..))")
+    @Pointcut("execution(public * com.example.system.*.controller.*.*(..)) || execution(public * com.example.system.controller.*.*(..))")
     public void webLog() {
     }
 

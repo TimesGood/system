@@ -29,8 +29,6 @@ import java.nio.charset.StandardCharsets;
  * 解析给认证者拿去认证
  */
 public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtUsernamePasswordAuthenticationFilter.class);
-
     public JwtUsernamePasswordAuthenticationFilter(AuthenticationManager authenticationManager,JwtLoginSuccessHandler loginSuccessHandler, JwtLoginFailureHandler loginFailureHandler) {
         this.setPostOnly(false);//只允许post请求
         this.setAuthenticationManager(authenticationManager);
@@ -43,7 +41,6 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        LOGGER.info("登录操作，如果是json提交的数据，解析json给认证者");
         if (!request.getMethod().equals("POST")) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }// 判断请求是否是json格式，对json登录进行解析处理

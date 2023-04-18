@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>2.7.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,7 +22,8 @@
 		<module>system-mbg</module>
 		<module>system-security</module>
 		<module>system-admin</module>
-<!--		<module>system-search</module>-->
+		<module>system-search</module>
+		<module>system-demo</module>
 	</modules>
 
 	<properties>
@@ -34,7 +35,6 @@
 		<docker.maven.plugin.version>0.40.2</docker.maven.plugin.version><!--docker打包插件-->
 		<pagehelper-starter.version>1.4.5</pagehelper-starter.version><!--分页插件-->
 		<druid.version>1.2.14</druid.version><!--数据库驱动-->
-		<hutool.version>5.8.9</hutool.version><!--hutool工具包-->
 		<springfox-swagger.version>3.0.0</springfox-swagger.version><!--swagger-->
 		<knife4j.version>3.0.0</knife4j.version><!--swagger增强-->
 		<mybatis-generator.version>1.3.7</mybatis-generator.version><!--mybatis代码生成器-->
@@ -44,6 +44,11 @@
 		<hibernate.version>6.1.5.Final</hibernate.version><!--参数校验-->
 		<jaxb-api.version>2.3.1</jaxb-api.version><!--解决java11不兼容的问题-->
 		<fastjson.version>2.0.28</fastjson.version><!--alibaba Json解析-->
+		<system-common.version>1.0-SNAPSHOT</system-common.version>
+		<system-mbg.version>1.0-SNAPSHOT</system-mbg.version>
+		<system-admin.version>1.0-SNAPSHOT</system-admin.version>
+		<system-security.version>1.0-SNAPSHOT</system-security.version>
+		<system-search.version>1.0-SNAPSHOT</system-search.version>
 	</properties>
 
 	<dependencyManagement>
@@ -52,32 +57,32 @@
 			<dependency>
 				<groupId>com.example</groupId>
 				<artifactId>system-common</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>${system-common.version}</version>
 			</dependency>
 			<!--MBG生成模块-->
 			<dependency>
 				<groupId>com.example</groupId>
 				<artifactId>system-mbg</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>${system-mbg.version}</version>
 			</dependency>
 			<!--安全模块-->
 			<dependency>
 				<groupId>com.example</groupId>
 				<artifactId>system-security</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>${system-security.version}</version>
 			</dependency>
 			<!--用户管理模块-->
 			<dependency>
 				<groupId>com.example</groupId>
 				<artifactId>system-admin</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>${system-admin.version}</version>
 			</dependency>
 			<!--搜索模块-->
-<!--			<dependency>-->
-<!--				<groupId>com.example</groupId>-->
-<!--				<artifactId>system-search</artifactId>-->
-<!--				<version>1.0-SNAPSHOT</version>-->
-<!--			</dependency>-->
+			<dependency>
+				<groupId>com.example</groupId>
+				<artifactId>system-search</artifactId>
+				<version>${system-search.version}</version>
+			</dependency>
 			<!--MyBatis分页插件starter-->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>

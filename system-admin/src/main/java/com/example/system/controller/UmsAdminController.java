@@ -70,26 +70,4 @@ public class UmsAdminController {
         adminService.logout();
         return CommonResult.success("登出成功");
     }
-
-    @ApiOperation("获取用户所有权限（包括+-权限）")
-    @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "adminId",value = "用户id",dataTypeClass = Long.class)
-    })
-    @RequestMapping(value = "/permission", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@RequestParam(value = "adminId") Long adminId) {
-        List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
-        return CommonResult.success(permissionList);
-    }
-
-    @ApiOperation("获取用户角色")
-    @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "adminId",value = "用户id",dataTypeClass = Long.class)
-    })
-    @RequestMapping(value = "/role", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<List<UmsRole>> getRoleList(@RequestParam(value = "adminId") Long adminId) {
-        List<UmsRole> umsRoleList = adminService.getRoleList(adminId);
-        return CommonResult.success(umsRoleList);
-    }
 }

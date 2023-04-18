@@ -17,8 +17,6 @@ import java.util.Collection;
  * 动态权限决策管理类，用于判断用户访问的路径是否有权限
  */
 public class DynamicAccessDecisionManager implements AccessDecisionManager {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicAccessDecisionManager.class);
-
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         //该用户所拥有资源与访问该路径所配资源比对，如果有该资源的访问，通过校验

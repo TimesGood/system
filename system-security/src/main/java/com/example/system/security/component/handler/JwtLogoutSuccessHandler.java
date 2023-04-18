@@ -17,10 +17,8 @@ import java.io.IOException;
  */
 //@Component
 public class JwtLogoutSuccessHandler implements LogoutSuccessHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtLogoutSuccessHandler.class);
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        LOGGER.info("登出成功处理");
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().print(JSONObject.toJSON(CommonResult.success("登出成功")));
         response.getWriter().flush();

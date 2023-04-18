@@ -47,9 +47,9 @@ spring:
 #指定mybatis的mapper扫描路径
 mybatis:
   mapper-locations:
-    - classpath:*/mapper/*.xml
-    - classpath:*/dao/*.xml
-    - classpath*:com.**.mapper/*.xml
+    - classpath:mapper/*.xml
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
 
 #***********************************************自定义属性***********************************************
 # 自定义redis属性
@@ -69,10 +69,6 @@ jwt:
   tokenPrefix: Bearer  #JWT负载前缀
   secret: mySecret #JWT加解密使用的密钥
   expiration: 30 #JWT的超期限时间(单位分)
-#自定义elasticsearch属性
-elasticsearch:
-  node_name:127.0.0.1:9200
-
 # 自定义授权白名单
 secure:
   ignored:
@@ -92,3 +88,7 @@ secure:
       - /actuator/**
       - /druid/**
       - /toLogin"
+
+#自定义elasticsearch属性
+elasticsearch:
+  node_name:127.0.0.1:9200

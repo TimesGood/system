@@ -21,8 +21,6 @@ import java.util.Objects;
  * 用于验证码验证
  */
 public class CheckCodeFilter extends OncePerRequestFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtLoginFailureHandler.class);
-
     @Autowired
     JwtLoginFailureHandler failureHandler;
 
@@ -30,7 +28,6 @@ public class CheckCodeFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String uri = request.getRequestURI();
         if("/admin/login".equals(uri) && request.getMethod().equals("POST")) {
-            LOGGER.info("开始验证验证码");
             try {
                 validate(request);
                 filterChain.doFilter(request,response);

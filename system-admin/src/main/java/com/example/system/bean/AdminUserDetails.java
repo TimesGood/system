@@ -1,4 +1,4 @@
-package com.example.system.demo.dto;
+package com.example.system.bean;
 
 import com.example.system.mbg.model.UmsAdmin;
 import com.example.system.mbg.model.UmsPermission;
@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,17 +16,20 @@ import java.util.stream.Collectors;
  * SpringSecurity需要的用户详情
  */
 public class AdminUserDetails implements UserDetails {
-    private UmsAdmin umsAdmin;
-    public AdminUserDetails(UmsAdmin umsAdmin) {
+    private final UmsAdmin umsAdmin;
+    private final List<UmsResource> resources;
+    public AdminUserDetails(UmsAdmin umsAdmin, List<UmsResource> resources) {
         this.umsAdmin = umsAdmin;
+        this.resources = resources;
     }
-
     /**
      * 指定校验权限的字段，权限最终交由AuthenticationManager管理
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("TEST"));
+        return resources.stream()
+                .map(role ->new SimpleGrantedAuthority(role.getId()+":"+role.getName()))
+                .collect(Collectors.toList());
     }
 
 

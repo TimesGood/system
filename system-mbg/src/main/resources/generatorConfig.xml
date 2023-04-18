@@ -24,7 +24,7 @@
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
         <!--*********************************生成注释*************************************-->
         <!--可以自定义生成model的代码注释-->
-        <commentGenerator type="com.example.mall_study.mbg.CommentGenerator">
+        <commentGenerator type="com.example.system.mbg.CommentGenerator">
             <!--去除自动生成的注释 -->
             <property name="suppressAllComments" value="true"/>
             <!--去除生成日期-->
@@ -43,14 +43,20 @@
         </jdbcConnection>
         <!--*********************************指定生成文件路径*************************************-->
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.example.mbg.model" targetProject="src\main\java"/>
+        <javaModelGenerator targetPackage="com.example.demo_mbg.model" targetProject="src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="system-mbg\src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.mbg.mapper"
-                             targetProject="src\main\java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo_mbg.mapper"
+                             targetProject="system-mbg\src\main\java"/>
         <!--*********************************指定要生成的表*************************************-->
-        <table tableName="ums_resource">
+        <table tableName="ums_admin">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="ums_role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="ums_permission">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
