@@ -43,22 +43,21 @@
         </jdbcConnection>
         <!--*********************************指定生成文件路径*************************************-->
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.example.demo_mbg.model" targetProject="src\main\java"/>
+        <javaModelGenerator targetPackage="com.example.system.mbg.model" targetProject="system-mbg\src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="system-mbg\src\main\resources"/>
+        <sqlMapGenerator targetPackage="com.example.system.mbg.mapper" targetProject="system-mbg\src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo_mbg.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.system.mbg.mapper"
                              targetProject="system-mbg\src\main\java"/>
         <!--*********************************指定要生成的表*************************************-->
-        <table tableName="ums_admin">
+<!--        <table tableName="ums_admin">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
+        <table tableName="ums_role_menu_relation">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="ums_role">
+        <table tableName="ums_role_resource_relation">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="ums_permission">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-
     </context>
 </generatorConfiguration>

@@ -3,12 +3,14 @@ import com.example.system.security.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -124,9 +126,48 @@ public class JwtTokenUtil {
     /**
      * 刷新token
      */
-    public String refreshToken(String token) {
+    public String refreshToken(String oldToken) {
+        if (StringUtils.isEmpty(oldToken)) return null;
+        String token = oldToken.substring(jwtProperties.getTokenHeader().length());
+        if(StringUtils.isEmpty(token)) return null;
+        //token校验不通过
         Claims claims = getClaimsFromToken(token);
-        claims.put(CLAIM_KEY_CREATED, new Date());
-        return generateToken(claims);
+        if(claims==null) return null;
+        //如果token已经过期，不支持刷新
+        if(isTokenExpired(token)) return null;
+        //如果token在30分钟之内刚刷新过，返回原token
+        if(tokenRefreshJustBefore(token,30*60)){
+            return token;
+        }else{
+            claims.put(CLAIM_KEY_CREATED, new Date());
+            return generateToken(claims);
+        }
+    }
+    /**
+     * 判断token在指定时间内是否刚刚刷新过
+     * @param token 原token
+     * @param time 指定时间（秒）
+     */
+    private boolean tokenRefreshJustBefore(String token, int time) {
+        Claims claims = getClaimsFromToken(token);
+        Date created = claims.get(CLAIM_KEY_CREATED, Date.class);
+        Date refreshDate = new Date();
+        //刷新时间在创建时间的指定时间内
+        if(refreshDate.after(created)&&refreshDate.before(offsetSecond(created,time))){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 日期偏移
+     * @param date 日期
+     * @param offset 要偏移的量：秒
+     */
+    private Date offsetSecond(Date date,int offset){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.SECOND, offset);
+        return cal.getTime();
     }
 }

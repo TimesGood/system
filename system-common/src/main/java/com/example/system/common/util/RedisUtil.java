@@ -85,9 +85,13 @@ public final class RedisUtil {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
             } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                del((List<String>) CollectionUtils.arrayToList(key));
             }
         }
+    }
+    @SuppressWarnings("unchecked")
+    public static void del(List<String> keys) {
+        redisTemplate.delete(keys);
     }
  
     // ============================String=============================
