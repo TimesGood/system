@@ -1,4 +1,4 @@
-package com.example.system.dto;
+package com.example.system.entry.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

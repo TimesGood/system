@@ -30,7 +30,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
         //**********************************************配置拦截规则****************************************************
-        for (String url:config.ignoreUrlsConfig().getUrls()){
+        for (String url:config.ignoreUrlsProperties().getUrls()){
             registry.antMatchers(url).permitAll();
         }
         //**********************************************登录、登出****************************************************

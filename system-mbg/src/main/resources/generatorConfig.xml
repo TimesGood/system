@@ -20,7 +20,7 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!--为生成的实体类创建一个toString方法-->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        <!--生成mapper.xml时覆盖原文件（原来是会直接追加到原文件中的-->
+        <!--生成mapper.xml时覆盖原文件（默认直接追加到原文件中-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
         <!--*********************************生成注释*************************************-->
         <!--可以自定义生成model的代码注释-->
@@ -30,7 +30,9 @@
             <!--去除生成日期-->
             <property name="suppressDate" value="true"/>
             <!--是否把表中的备注添加到注释中-->
-            <property name="addRemarkComments" value="true"/>
+            <property name="addRemarkComments" value="false"/>
+            <!--是否添加Swagger注解-->
+            <property name="addSwaggerAnnotate" value="true"/>
         </commentGenerator>
         <!--*********************************数据库配置*************************************-->
         <!--配置数据库连接-->
@@ -50,13 +52,12 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.system.mbg.mapper"
                              targetProject="system-mbg\src\main\java"/>
         <!--*********************************指定要生成的表*************************************-->
-<!--        <table tableName="ums_admin">-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-        <table tableName="ums_role_menu_relation">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="ums_role_resource_relation">
+        <!--示例：
+            <table tableName="表名">
+                <generatedKey column="列名" sqlStatement="指定数据库" identity="是否主键"/>
+            </table>
+        -->
+        <table tableName="ums_menu_node">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

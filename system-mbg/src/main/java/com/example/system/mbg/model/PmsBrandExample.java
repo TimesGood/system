@@ -79,6 +79,10 @@ public class PmsBrandExample {
             criteria = new ArrayList<Criterion>();
         }
 
+        /**
+         * 是否有查询条件
+         * @return
+         */
         public boolean isValid() {
             return criteria.size() > 0;
         }

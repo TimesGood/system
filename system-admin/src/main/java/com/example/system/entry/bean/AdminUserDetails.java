@@ -1,4 +1,4 @@
-package com.example.system.bean;
+package com.example.system.entry.bean;
 
 import com.example.system.mbg.model.UmsAdmin;
 import com.example.system.mbg.model.UmsPermission;

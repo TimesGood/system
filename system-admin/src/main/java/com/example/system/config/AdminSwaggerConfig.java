@@ -21,7 +21,6 @@ public class AdminSwaggerConfig extends BaseSwaggerConfig {
     public SwaggerProperties swaggerProperties() {
         return SwaggerProperties.builder()
                 .groupName("admin")
-                .enable(true)
                 .applicationName("用户模块")
                 .version("1.0")
                 .description("管理用户账号、权限、角色、组织等")

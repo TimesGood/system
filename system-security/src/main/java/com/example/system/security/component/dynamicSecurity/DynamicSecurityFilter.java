@@ -1,6 +1,6 @@
 package com.example.system.security.component.dynamicSecurity;
 
-import com.example.system.security.config.IgnoreUrlsConfig;
+import com.example.system.security.properties.IgnoreUrlsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
@@ -28,7 +28,7 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
     private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
     @Autowired
-    private IgnoreUrlsConfig ignoreUrlsConfig;
+    private IgnoreUrlsProperties ignoreUrlsProperties;
 
     @Autowired
     public void setCustomAccessDecisionManager(DynamicAccessDecisionManager accessDecisionManager) {
@@ -54,7 +54,7 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
         }
         //白名单放行
         PathMatcher pathMatcher = new AntPathMatcher();
-        boolean flag = ignoreUrlsConfig.getUrls().stream()
+        boolean flag = ignoreUrlsProperties.getUrls().stream()
                 .anyMatch(url -> pathMatcher.match(url, request.getRequestURI()));
         if(flag) {
             fi.getChain().doFilter(fi.getRequest(),fi.getResponse());

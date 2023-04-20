@@ -1,8 +1,7 @@
-package com.example.system.security.config;
+package com.example.system.security.properties;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  * 身份鉴权白名单
  */
 @ConfigurationProperties("secure.ignored")
-public class IgnoreUrlsConfig {
+public class IgnoreUrlsProperties {
     private List<String> urls = new ArrayList<>();
 
     public List<String> getUrls() {

@@ -4,10 +4,12 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -24,7 +26,6 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 public abstract class BaseSwaggerConfig {
 
     /**
@@ -39,7 +40,6 @@ public abstract class BaseSwaggerConfig {
     public Docket defaultApi(){
         SwaggerProperties build = SwaggerProperties.builder()
                 .groupName("defaultApi")
-                .enable(true)
                 .applicationName("后台管理系统")
                 .version("1.0")
                 .description("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
@@ -54,8 +54,8 @@ public abstract class BaseSwaggerConfig {
     public Docket createDocket(SwaggerProperties swaggerProperties) {
         return new Docket(DocumentationType.OAS_30)//Swagger样式类型
                 .groupName(swaggerProperties.getGroupName())
-                //是否开启swagger
-                .enable(swaggerProperties.getEnable())
+                //是否开启swagger，留给配置文件判定
+//                .enable(enable)
                 //页面详细
                 .apiInfo(apiInfo(swaggerProperties))
                 //选择哪些接口作为doc发布

@@ -6,6 +6,7 @@ import com.example.system.security.component.dynamicSecurity.DynamicSecurityMeta
 import com.example.system.security.component.filter.JwtAuthenticationTokenFilter;
 import com.example.system.security.component.filter.JwtUsernamePasswordAuthenticationFilter;
 import com.example.system.security.component.handler.*;
+import com.example.system.security.properties.IgnoreUrlsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
@@ -40,8 +41,8 @@ public class CommonSecurityConfig {
     }
     /**访问白名单**/
     @Bean
-    public IgnoreUrlsConfig ignoreUrlsConfig(){
-        return new IgnoreUrlsConfig();
+    public IgnoreUrlsProperties ignoreUrlsProperties(){
+        return new IgnoreUrlsProperties();
     }
     /**权限不足处理**/
     @Bean

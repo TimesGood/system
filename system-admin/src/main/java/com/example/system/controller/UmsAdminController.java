@@ -2,9 +2,10 @@ package com.example.system.controller;
 
 import com.example.system.common.api.CommonPage;
 import com.example.system.common.api.CommonResult;
-import com.example.system.security.config.JwtProperties;
-import com.example.system.dto.UmsAdminLoginParam;
-import com.example.system.dto.UpdateAdminPasswordParam;
+import com.example.system.security.entry.vo.TokenVo;
+import com.example.system.security.properties.JwtProperties;
+import com.example.system.entry.dto.UmsAdminLoginParam;
+import com.example.system.entry.dto.UpdateAdminPasswordParam;
 import com.example.system.mbg.model.UmsAdmin;
 import com.example.system.mbg.model.UmsRole;
 import com.example.system.service.UmsAdminService;
@@ -25,9 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * 后台用户管理
- */
+
 @Controller
 @Api(tags = {"后台用户管理"})
 @RequestMapping("/admin")
@@ -57,18 +56,16 @@ public class UmsAdminController {
      * @param result
      * @return
      */
-    @ApiOperation(value = "登录以后返回token")
+    @ApiOperation(value = "登录获取token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<Map<String,String>> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam, BindingResult result) {
+    public CommonResult<TokenVo> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam, BindingResult result) {
         String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         if (token == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", token);
-        tokenMap.put("tokenPrefix", jwtProperties.getTokenPrefix());
-        return CommonResult.success(tokenMap);
+        TokenVo vo = new TokenVo(token);
+        return CommonResult.success(vo);
     }
     @ApiOperation(value = "账号登出")
     @RequestMapping(value = "/logout",method = RequestMethod.POST)
@@ -87,10 +84,8 @@ public class UmsAdminController {
         if (refreshToken == null) {
             return CommonResult.failed("token已经过期！");
         }
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", refreshToken);
-        tokenMap.put("tokenHead", jwtProperties.getTokenHeader());
-        return CommonResult.success(tokenMap);
+        TokenVo vo = new TokenVo(token);
+        return CommonResult.success(vo);
     }
 
     /**

@@ -17,7 +17,6 @@
 	<description>system-admin</description>
 
 	<dependencies>
-		<!--通用模块-->
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>system-common</artifactId>
@@ -26,18 +25,14 @@
 			<groupId>com.example</groupId>
 			<artifactId>system-mbg</artifactId>
 		</dependency>
-		<!--security-->
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>system-security</artifactId>
 		</dependency>
-
-		<!--ES-->
 <!--		<dependency>-->
 <!--			<groupId>com.example</groupId>-->
 <!--			<artifactId>system-search</artifactId>-->
 <!--		</dependency>-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

@@ -52,7 +52,16 @@ mybatis:
     - classpath*:com/**/mapper/*.xml
     - classpath*:com/**/dao/*.xml
     - classpath:com/example/system/dao/*.xml
-
+#swagger配置
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+#springboot日志输出级别
+logging:
+  level:
+    root: info
+    com.example.system: debug
 #***********************************************自定义属性***********************************************
 # 自定义redis属性
 redis:

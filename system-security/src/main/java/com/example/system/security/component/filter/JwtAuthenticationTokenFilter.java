@@ -1,7 +1,7 @@
 package com.example.system.security.component.filter;
 
 import com.example.system.security.common.util.JwtTokenUtil;
-import com.example.system.security.config.JwtProperties;
+import com.example.system.security.properties.JwtProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

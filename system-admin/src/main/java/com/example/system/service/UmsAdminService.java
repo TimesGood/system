@@ -1,8 +1,7 @@
 package com.example.system.service;
 
-import com.example.system.dto.UpdateAdminPasswordParam;
+import com.example.system.entry.dto.UpdateAdminPasswordParam;
 import com.example.system.mbg.model.UmsAdmin;
-import com.example.system.mbg.model.UmsPermission;
 import com.example.system.mbg.model.UmsResource;
 import com.example.system.mbg.model.UmsRole;
 import org.springframework.security.core.userdetails.UserDetails;

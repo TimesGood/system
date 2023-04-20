@@ -22,9 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-/**
- * 会员登录注册管理Controller
- */
+
 @Controller
 @Api(tags = {"会员登录注册管理"})
 @RequestMapping("/sso")
@@ -35,20 +33,20 @@ public class UmsMemberController {
     @ApiOperation("获取验证码")
     @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getAuthCode(@RequestParam String telephone) {
+    public CommonResult<String> getAuthCode(@RequestParam String telephone) {
         return memberService.generateAuthCode(telephone);
     }
     @ApiOperation("获取验证码（RedisTemplate缓存备用）")
     @RequestMapping(value = "/getAuthCodeBack", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getAuthCodeBack(@RequestParam String telephone) {
+    public CommonResult<String> getAuthCodeBack(@RequestParam String telephone) {
         return memberService.generateAuthCodeBack(telephone);
     }
 
     @ApiOperation("判断验证码是否正确")
     @RequestMapping(value = "/verifyAuthCode", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updatePassword(@RequestParam String telephone,
+    public CommonResult<String> updatePassword(@RequestParam String telephone,
                                  @RequestParam String authCode) {
         return memberService.verifyAuthCode(telephone,authCode);
     }
@@ -60,8 +58,7 @@ public class UmsMemberController {
                                        @RequestParam String authCode) {
         return memberService.verifyAuthCodeBack(telephone,authCode);
     }
-    @ApiOperation("获取验证码图片")
-    @PreAuthorize("hasAuthority('pms:brand:read')")
+    @ApiOperation("获取图片验证码")
     @RequestMapping(value = "/getCode", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult<String> getCode(HttpServletRequest request, HttpServletResponse response){

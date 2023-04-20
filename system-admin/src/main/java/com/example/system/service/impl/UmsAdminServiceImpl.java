@@ -1,11 +1,11 @@
 package com.example.system.service.impl;
 
 
-import com.example.system.dto.UpdateAdminPasswordParam;
+import com.example.system.entry.dto.UpdateAdminPasswordParam;
 import com.example.system.security.common.util.JwtTokenUtil;
 import com.example.system.common.util.SpringUtil;
 import com.example.system.dao.UmsAdminRoleRelationDao;
-import com.example.system.bean.AdminUserDetails;
+import com.example.system.entry.bean.AdminUserDetails;
 import com.example.system.mbg.mapper.*;
 import com.example.system.mbg.model.*;
 import com.example.system.service.UmsAdminService;
@@ -50,11 +50,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
+        UmsAdmin admin = getCacheService().getAdmin(username);
+        if(admin != null) return admin;
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(username);
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
         if (adminList != null && adminList.size() > 0) {
-            return adminList.get(0);
+            admin = adminList.get(0);
+            getCacheService().setAdmin(admin);
+            return admin;
         }
         return null;
     }
@@ -87,23 +91,19 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public String login(String username, String password) {
         String token = null;
-        try {
-            //根据用户名获取用户
-            UserDetails userDetails = loadUserByUsername(username);
-            //输入的密码与用户的密码比对
-            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-                throw new BadCredentialsException("密码不正确");
-            }
-            //验证成功把用户的信息最重要的就是权限，userDetails.getAuthorities()把用户所持权限拿出交由AuthenticationManager进行管理
-            //之后再controller通过注解@PreAuthorize("hasAuthority('pms:brand:read')")，单引号就是需要的权限，访问该接口时会将此注解中字符串
-            //与被管理的用户的权限列表比对，有就可以继续访问，没有则抛AccessDeniedException异常
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            //制作token
-            token = jwtTokenUtil.generateToken(userDetails);
-        } catch (AuthenticationException e) {
-            LOGGER.warn("登录异常:{}", e.getMessage());
+        //根据用户名获取用户
+        UserDetails userDetails = loadUserByUsername(username);
+        //输入的密码与用户的密码比对
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BadCredentialsException("密码不正确");
         }
+        //验证成功把用户的信息最重要的就是权限，userDetails.getAuthorities()把用户所持权限拿出交由AuthenticationManager进行管理
+        //之后再controller通过注解@PreAuthorize("hasAuthority('pms:brand:read')")，单引号就是需要的权限，访问该接口时会将此注解中字符串
+        //与被管理的用户的权限列表比对，有就可以继续访问，没有则抛AccessDeniedException异常
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        //制作token
+        token = jwtTokenUtil.generateToken(userDetails);
         return token;
     }
 
@@ -112,9 +112,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
         return null;
     }
+
     @Override
     public List<UmsResource> getResourceList(Long adminId) {
-        return adminRoleRelationDao.getResourceList(adminId);
+        List<UmsResource> resourceList = getCacheService().getResourceList(adminId);
+        if(!CollectionUtils.isEmpty(resourceList)) return resourceList;
+        resourceList = adminRoleRelationDao.getResourceList(adminId);
+        if(!CollectionUtils.isEmpty(resourceList)) getCacheService().setResourceList(adminId,resourceList);
+        return resourceList;
     }
 
     @Override
@@ -143,14 +148,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public int update(Long id, UmsAdmin admin) {
         admin.setId(id);
         UmsAdmin rawAdmin = adminMapper.selectByPrimaryKey(id);
-        if(rawAdmin.getPassword().equals(admin.getPassword())){
+        if (rawAdmin.getPassword().equals(admin.getPassword())) {
             //与原加密密码相同的不需要修改
             admin.setPassword(null);
-        }else{
+        } else {
             //与原加密密码不同的需要加密修改
-            if(StringUtils.isEmpty(admin.getPassword())){
+            if (StringUtils.isEmpty(admin.getPassword())) {
                 admin.setPassword(null);
-            }else{
+            } else {
                 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
             }
         }
@@ -191,19 +196,19 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public int updatePassword(UpdateAdminPasswordParam param) {
-        if(StringUtils.isEmpty(param.getUsername())
-                ||StringUtils.isEmpty(param.getOldPassword())
-                ||StringUtils.isEmpty(param.getNewPassword())){
+        if (StringUtils.isEmpty(param.getUsername())
+                || StringUtils.isEmpty(param.getOldPassword())
+                || StringUtils.isEmpty(param.getNewPassword())) {
             return -1;
         }
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(param.getUsername());
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(adminList)){
+        if (CollectionUtils.isEmpty(adminList)) {
             return -2;
         }
         UmsAdmin umsAdmin = adminList.get(0);
-        if(!passwordEncoder.matches(param.getOldPassword(),umsAdmin.getPassword())){
+        if (!passwordEncoder.matches(param.getOldPassword(), umsAdmin.getPassword())) {
             return -3;
         }
         umsAdmin.setPassword(passwordEncoder.encode(param.getNewPassword()));
@@ -223,7 +228,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             //根据用户Id获取该用户所拥有的资源
             List<UmsResource> resourceList = getResourceList(admin.getId());
             //返回用户的信息及其该用户的权限列表
-            return new AdminUserDetails(admin,resourceList);
+            return new AdminUserDetails(admin, resourceList);
         }
         //message消息
         throw new UsernameNotFoundException("用户不存在");

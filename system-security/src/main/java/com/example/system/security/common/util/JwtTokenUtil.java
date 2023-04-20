@@ -1,5 +1,5 @@
 package com.example.system.security.common.util;
-import com.example.system.security.config.JwtProperties;
+import com.example.system.security.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -128,7 +128,7 @@ public class JwtTokenUtil {
      */
     public String refreshToken(String oldToken) {
         if (StringUtils.isEmpty(oldToken)) return null;
-        String token = oldToken.substring(jwtProperties.getTokenHeader().length());
+        String token = oldToken.substring(jwtProperties.getTokenPrefix().length());
         if(StringUtils.isEmpty(token)) return null;
         //token校验不通过
         Claims claims = getClaimsFromToken(token);
