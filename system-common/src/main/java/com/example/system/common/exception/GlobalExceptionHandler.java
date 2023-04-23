@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 参数错误
+     * 参数错误，当参数校验失败时，捕获处理
      * @param e
      * @return
      */

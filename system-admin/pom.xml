@@ -12,6 +12,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>system-admin</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>system-admin</name>
 	<description>system-admin</description>

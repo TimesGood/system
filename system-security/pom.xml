@@ -11,6 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>system-security</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>system-security</name>
     <description>system-security</description>

@@ -1,4 +1,4 @@
-package com.example.system.common.log;
+package com.example.system.common.aspect.log;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

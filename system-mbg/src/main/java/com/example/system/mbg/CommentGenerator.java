@@ -2,10 +2,10 @@ package com.example.system.mbg;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.DefaultJavaFormatter;
+import org.mybatis.generator.api.dom.java.*;
+import org.mybatis.generator.api.dom.kotlin.KotlinFile;
+import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.mybatis.generator.internal.util.StringUtility;
 
@@ -22,10 +22,12 @@ public class CommentGenerator extends DefaultCommentGenerator {
     private boolean addRemarkComments = false;
     private boolean addSwaggerAnnotate = false;
     private static final String EXAMPLE_SUFFIX="Example";
+    private static final String MAPPER_SUFFIX="Mapper";
     private static final String[] API_MODEL_PROPERTY_FULL_CLASS_NAMES = {
             "io.swagger.annotations.ApiModel",
             "io.swagger.annotations.ApiModelProperty"
     };
+    private static final String MAPPER_PACKAGE_NAME = "org.apache.ibatis.annotations.Mapper";
 
     /**
      * 载入配置文件
@@ -38,12 +40,12 @@ public class CommentGenerator extends DefaultCommentGenerator {
     }
 
     /**
-     * 给类添加注释
+     * 给Model类添加注释
      */
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String remarks = introspectedTable.getRemarks();
-        topLevelClass.addJavaDocLine("@ApiModel(\""+remarks+"\")");
+        if (addSwaggerAnnotate)  topLevelClass.addJavaDocLine("@ApiModel(\""+remarks+"\")");
     }
 
     /**
@@ -85,20 +87,25 @@ public class CommentGenerator extends DefaultCommentGenerator {
     }
 
     /**
-     * 给文件添加东西
+     * 给文件添加东西，添加包路径
      */
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
         super.addJavaFileComment(compilationUnit);
         //只给model中类名没有"Example"的添加swagger注解类的导入
 //        if(!compilationUnit.isJavaInterface()&&!compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)){
-        if(!compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)){
+        if(
+                !compilationUnit.getType().getFullyQualifiedName().contains(MAPPER_SUFFIX) &&
+                !compilationUnit.getType().getFullyQualifiedName().contains(EXAMPLE_SUFFIX)
+        ){
             if(addSwaggerAnnotate) {
                 for (String item : API_MODEL_PROPERTY_FULL_CLASS_NAMES) {
                     compilationUnit.addImportedType(new FullyQualifiedJavaType(item));
                 }
             }
         }
+//        if(compilationUnit.getType().getFullyQualifiedName().contains(MAPPER_SUFFIX)){
+//            compilationUnit.addImportedType(new FullyQualifiedJavaType(MAPPER_PACKAGE_NAME));
+//        }
     }
-
 }

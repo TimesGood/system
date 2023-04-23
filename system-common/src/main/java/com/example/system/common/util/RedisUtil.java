@@ -1,26 +1,19 @@
 package com.example.system.common.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
- 
-@Component
+
 public final class RedisUtil {
 
     private RedisUtil(){}
-    private static RedisTemplate redisTemplate;
+    private static RedisTemplate redisTemplate = SpringUtil.getBean("redisService", RedisTemplate.class);
 
-    @Autowired
-    private void getRedisTemplate(RedisTemplate redisTemplate){
-        RedisUtil.redisTemplate = redisTemplate;
-    }
 
 //    private static RedisTemplate<String, Object> redisTemplate = SpringUtils
 //            .getBean("redisTemplate", RedisTemplate.class);

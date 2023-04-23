@@ -3,8 +3,11 @@ package com.example.system.mbg.mapper;
 import com.example.system.mbg.model.UmsMenu;
 import com.example.system.mbg.model.UmsMenuExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UmsMenuMapper {
     long countByExample(UmsMenuExample example);
 

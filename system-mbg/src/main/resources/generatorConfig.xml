@@ -57,7 +57,7 @@
                 <generatedKey column="列名" sqlStatement="指定数据库" identity="是否主键"/>
             </table>
         -->
-        <table tableName="ums_menu_node">
+        <table tableName="cms_help">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

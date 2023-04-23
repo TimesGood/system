@@ -12,10 +12,10 @@
     <groupId>com.example</groupId>
     <artifactId>system-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>system-demo</name>
     <description>system-demo</description>
-    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

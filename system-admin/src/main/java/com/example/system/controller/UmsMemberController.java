@@ -36,12 +36,6 @@ public class UmsMemberController {
     public CommonResult<String> getAuthCode(@RequestParam String telephone) {
         return memberService.generateAuthCode(telephone);
     }
-    @ApiOperation("获取验证码（RedisTemplate缓存备用）")
-    @RequestMapping(value = "/getAuthCodeBack", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<String> getAuthCodeBack(@RequestParam String telephone) {
-        return memberService.generateAuthCodeBack(telephone);
-    }
 
     @ApiOperation("判断验证码是否正确")
     @RequestMapping(value = "/verifyAuthCode", method = RequestMethod.POST)
@@ -51,13 +45,6 @@ public class UmsMemberController {
         return memberService.verifyAuthCode(telephone,authCode);
     }
 
-    @ApiOperation("判断验证码是否正确（RedisTemplate缓存备用）")
-    @RequestMapping(value = "/verifyAuthCodeBack", method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult updatePasswordBack(@RequestParam String telephone,
-                                       @RequestParam String authCode) {
-        return memberService.verifyAuthCodeBack(telephone,authCode);
-    }
     @ApiOperation("获取图片验证码")
     @RequestMapping(value = "/getCode", method = RequestMethod.POST)
     @ResponseBody

@@ -21,7 +21,6 @@ public class DemoSwaggerConfig extends BaseSwaggerConfig {
     public SwaggerProperties swaggerProperties() {
         return SwaggerProperties.builder()
                 .groupName("demo")
-                .enable(true)
                 .applicationName("案例")
                 .version("1.0")
                 .description("案例，增删改查")

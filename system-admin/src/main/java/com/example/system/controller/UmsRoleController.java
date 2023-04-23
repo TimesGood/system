@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @Api(tags = "后台角色管理")
+@RequestMapping("/role")
 public class UmsRoleController {
     @Autowired
     private UmsRoleService roleService;

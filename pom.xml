@@ -41,7 +41,7 @@
 		<mybatis.version>3.5.10</mybatis.version><!--mybatis-->
 		<mysql-connector.version>8.0.29</mysql-connector.version><!--mysql连接池-->
 		<jjwt.version>0.9.1</jjwt.version><!--jwt-->
-		<hibernate.version>6.1.5.Final</hibernate.version><!--参数校验-->
+		<hibernate.version>6.2.0.Final</hibernate.version><!--参数校验-->
 		<jaxb-api.version>2.3.1</jaxb-api.version><!--解决java11不兼容的问题-->
 		<fastjson.version>2.0.28</fastjson.version><!--alibaba Json解析-->
 		<system-common.version>1.0-SNAPSHOT</system-common.version>
@@ -154,10 +154,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
@@ -200,6 +196,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--解决打包时报Unable to find main class。取消寻找模块main方法-->
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 			<!--使用maven创建docker镜像-->
 <!--			<plugin>-->

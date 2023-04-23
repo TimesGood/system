@@ -3,8 +3,10 @@ package com.example.system.mbg.mapper;
 import com.example.system.mbg.model.UmsRoleResourceRelation;
 import com.example.system.mbg.model.UmsRoleResourceRelationExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface UmsRoleResourceRelationMapper {
     long countByExample(UmsRoleResourceRelationExample example);
 

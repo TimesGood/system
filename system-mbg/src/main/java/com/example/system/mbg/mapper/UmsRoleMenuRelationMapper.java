@@ -3,8 +3,11 @@ package com.example.system.mbg.mapper;
 import com.example.system.mbg.model.UmsRoleMenuRelation;
 import com.example.system.mbg.model.UmsRoleMenuRelationExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UmsRoleMenuRelationMapper {
     long countByExample(UmsRoleMenuRelationExample example);
 

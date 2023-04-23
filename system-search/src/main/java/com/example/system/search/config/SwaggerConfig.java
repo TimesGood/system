@@ -14,7 +14,6 @@ public class SwaggerConfig extends BaseSwaggerConfig {
     public SwaggerProperties swaggerProperties() {
         return SwaggerProperties.builder()
                 .groupName("searchApi")
-                .enable(true)
                 .applicationName("商品搜索管理")
                 .description("ES搜索引擎")
                 .version("1.0")
