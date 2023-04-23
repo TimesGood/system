@@ -24,6 +24,7 @@
 		<module>system-admin</module>
 		<module>system-search</module>
 		<module>system-demo</module>
+		<module>system-member</module>
 	</modules>
 
 	<properties>
