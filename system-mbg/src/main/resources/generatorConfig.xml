@@ -57,7 +57,10 @@
                 <generatedKey column="列名" sqlStatement="指定数据库" identity="是否主键"/>
             </table>
         -->
-        <table tableName="oms_cart_item">
+        <table tableName="sms_home_brand">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sms_home_new_product">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

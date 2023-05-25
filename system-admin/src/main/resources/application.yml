@@ -51,7 +51,6 @@ mybatis:
     - classpath:dao/*.xml
     - classpath*:com/**/mapper/*.xml
     - classpath*:com/**/dao/*.xml
-    - classpath:com/example/system/dao/*.xml
 #swagger配置
 springfox:
   documentation:

@@ -62,7 +62,14 @@ redis:
     #验证码失效时间
     expire:
       authCode: 120 # 验证码超期时间
-
+    admin: 'ums:admin'
+    resourceList: 'ums:resourceList'
+  #缓存键值：用户相关：database:admin:adminId
+  #缓存键值：资源相关：database:resourceList:adminId
+  database: mall
+  #缓存失效时间
+  expire:
+    common: 86400 # 24小时
 # 自定义jwt属性
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
