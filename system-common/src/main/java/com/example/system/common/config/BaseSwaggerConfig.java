@@ -26,6 +26,11 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Swagger配置类
+ * 默认访问地址
+ * http://localhost:8080/swagger-ui/index.html
+ */
 public abstract class BaseSwaggerConfig {
 
     /**
