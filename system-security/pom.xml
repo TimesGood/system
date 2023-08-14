@@ -36,6 +36,12 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
+        <!--当使用高版本jdk时，会报javax.xml.bind.DatatypeConverter错误需要加上以下依赖即可-->
+<!--        <dependency>-->
+<!--            <groupId>javax.xml.bind</groupId>-->
+<!--            <artifactId>jaxb-api</artifactId>-->
+<!--            <version>2.3.1</version>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

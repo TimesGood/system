@@ -106,6 +106,7 @@ secure:
       - /actuator/**
       - /druid/**
       - /toLogin"
+      - /error
 
 #自定义elasticsearch属性
 elasticsearch:
