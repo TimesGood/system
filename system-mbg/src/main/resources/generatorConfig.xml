@@ -58,10 +58,7 @@
             </table>
         -->
 
-        <table tableName="cms_prefrence_area">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="cms_subject">
+        <table tableName="ums_integration_consume_setting">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

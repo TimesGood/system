@@ -1,5 +1,6 @@
 package com.example.system.service;
 
+import com.example.system.entry.vo.CartProduct;
 import com.example.system.entry.vo.CartPromotionItem;
 import com.example.system.mbg.model.OmsCartItem;
 //import com.example.system.member.entry.vo.CartProduct;
@@ -40,7 +41,7 @@ public interface OmsCartItemService {
     /**
      *获取购物车中用于选择商品规格的商品信息
      */
-//    CartProduct getCartProduct(Long productId);
+    CartProduct getCartProduct(Long productId);
 
     /**
      * 修改购物车中商品的规格

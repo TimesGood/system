@@ -72,6 +72,7 @@ redis:
   key:
     member: 'ums:member'
     authCode: 'ums:authCode'
+    orderId: 'oms:orderId'
   #缓存键值：用户相关：database:admin:adminId
   #缓存键值：资源相关：database:resourceList:adminId
   database: mall
@@ -109,3 +110,8 @@ secure:
 #自定义elasticsearch属性
 elasticsearch:
   node_name:127.0.0.1:9200
+# 消息队列定义
+rabbitmq:
+  queue:
+    name:
+      cancelOrder: cancelOrderQueue
