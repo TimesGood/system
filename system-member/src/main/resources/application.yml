@@ -48,6 +48,13 @@ spring:
   #配置es搜索引擎
   elasticsearch:
     uris: http://localhost:9200
+  #rabbitmq配置
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    virtual-host: /mall
+#    username: guest
+#    password: guest
 
 #指定mybatis的mapper扫描路径
 mybatis:

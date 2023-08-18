@@ -84,6 +84,7 @@
 				<artifactId>system-search</artifactId>
 				<version>${system-search.version}</version>
 			</dependency>
+
 			<!--MyBatis分页插件starter-->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>

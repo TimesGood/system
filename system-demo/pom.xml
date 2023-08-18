@@ -20,21 +20,8 @@
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>system-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
             <artifactId>system-mbg</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>system-admin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>system-security</artifactId>
-        </dependency>
-
 <!--        <dependency>-->
 <!--            <groupId>com.example</groupId>-->
 <!--            <artifactId>system-search</artifactId>-->
