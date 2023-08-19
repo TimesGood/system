@@ -38,7 +38,7 @@ public class UmsMemberCouponController {
 
     @ApiOperation("获取会员优惠券历史列表")
     @ApiImplicitParam(name = "useStatus", value = "优惠券筛选类型:0->未使用；1->已使用；2->已过期",
-            allowableValues = "0,1,2", paramType = "query", dataType = "integer")
+            allowableValues = "0,1,2", paramType = "query", dataType = "integer",dataTypeClass = Integer.class)
     @RequestMapping(value = "/listHistory", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<SmsCouponHistory>> listHistory(@RequestParam(value = "useStatus", required = false) Integer useStatus) {
@@ -48,7 +48,7 @@ public class UmsMemberCouponController {
 
     @ApiOperation("获取会员优惠券列表")
     @ApiImplicitParam(name = "useStatus", value = "优惠券筛选类型:0->未使用；1->已使用；2->已过期",
-            allowableValues = "0,1,2", paramType = "query", dataType = "integer")
+            allowableValues = "0,1,2", paramType = "query", dataType = "integer",dataTypeClass = Integer.class)
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<SmsCoupon>> list(@RequestParam(value = "useStatus", required = false) Integer useStatus) {
@@ -58,7 +58,7 @@ public class UmsMemberCouponController {
 
 //    @ApiOperation("获取登录会员购物车的相关优惠券")
 //    @ApiImplicitParam(name = "type", value = "使用可用:0->不可用；1->可用",
-//            defaultValue = "1", allowableValues = "0,1", paramType = "path", dataType = "integer")
+//            defaultValue = "1", allowableValues = "0,1", paramType = "path", dataType = "integer",dataTypeClass = Integer.class)
 //    @RequestMapping(value = "/list/cart/{type}", method = RequestMethod.GET)
 //    @ResponseBody
 //    public CommonResult<List<SmsCouponHistoryDetail>> listCart(@PathVariable Integer type) {

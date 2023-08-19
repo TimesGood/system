@@ -27,7 +27,9 @@ public class PmsProductAttributeController {
     private PmsProductAttributeService productAttributeService;
 
     @ApiOperation("根据分类查询属性列表或参数列表")
-    @ApiImplicitParams({@ApiImplicitParam(name = "type", value = "0表示属性，1表示参数", required = true, paramType = "query", dataType = "integer")})
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type", value = "0表示属性，1表示参数", required = true, paramType = "query", dataType = "integer", dataTypeClass = Integer.class)
+    })
     @RequestMapping(value = "/list/{cid}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<PmsProductAttribute>> getList(@PathVariable Long cid,

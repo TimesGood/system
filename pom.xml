@@ -44,6 +44,7 @@
 		<jjwt.version>0.9.1</jjwt.version><!--jwt-->
 		<hibernate.version>6.2.0.Final</hibernate.version><!--参数校验-->
 		<jaxb-api.version>2.3.1</jaxb-api.version><!--解决java11不兼容的问题-->
+		<logstash-logback.version>7.2</logstash-logback.version><!--日志-->
 		<fastjson.version>2.0.28</fastjson.version><!--alibaba Json解析-->
 		<system-common.version>1.0-SNAPSHOT</system-common.version>
 		<system-mbg.version>1.0-SNAPSHOT</system-mbg.version>
@@ -145,6 +146,13 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.version}</version>
 			</dependency>
+			<!--集成logstash-->
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback.version}</version>
+			</dependency>
+			<!--fastjson-->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>

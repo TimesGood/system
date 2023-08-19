@@ -29,7 +29,7 @@ public class PmsPortalProductController {
 
     @ApiOperation(value = "综合搜索、筛选、排序")
     @ApiImplicitParam(name = "sort", value = "排序字段:0->按相关度；1->按新品；2->按销量；3->价格从低到高；4->价格从高到低",
-            defaultValue = "0", allowableValues = "0,1,2,3,4", paramType = "query", dataType = "integer")
+            defaultValue = "0", allowableValues = "0,1,2,3,4", paramType = "query", dataType = "integer",dataTypeClass = Integer.class)
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<PmsProduct>> search(@RequestParam(required = false) String keyword,
