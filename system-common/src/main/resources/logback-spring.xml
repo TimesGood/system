@@ -20,6 +20,7 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
+        <!--格式化日志-->
         <encoder>
             <!--设置为默认的文件日志格式-->
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -172,14 +173,7 @@
             </providers>
         </encoder>
     </appender>
-
-    <!--控制框架输出日志-->
-    <logger name="org.slf4j" level="INFO"/>
-    <logger name="springfox" level="INFO"/>
-    <logger name="io.swagger" level="INFO"/>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.hibernate.validator" level="INFO"/>
-
+    <!--控制框架输出日志级别-->
     <root level="DEBUG">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE_DEBUG"/>
@@ -187,11 +181,14 @@
         <appender-ref ref="LOG_STASH_DEBUG"/>
         <appender-ref ref="LOG_STASH_ERROR"/>
     </root>
-
+    <logger name="org.slf4j" level="INFO"/>
+    <logger name="springfox" level="INFO"/>
+    <logger name="io.swagger" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.hibernate.validator" level="INFO"/>
     <logger name="com.example.system.common.aspect.log.WebLogAspect" level="DEBUG">
         <appender-ref ref="LOG_STASH_RECORD"/>
     </logger>
-
     <logger name="com.example.system" level="DEBUG">
         <appender-ref ref="LOG_STASH_BUSINESS"/>
     </logger>

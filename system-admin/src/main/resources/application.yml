@@ -58,9 +58,6 @@ logging:
   level:
     root: info
     com.example.system: debug
-logstash:
-  host: localhost
-  enableInnerLog: false
 #***********************************************框架内自定义属性***********************************************
 # 自定义redis属性
 redis:
@@ -107,3 +104,6 @@ secure:
       - /druid/**
       - /toLogin"
       - /error
+logstash:
+  host: localhost
+  enableInnerLog: false
