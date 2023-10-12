@@ -113,6 +113,8 @@ secure:
       - /actuator/**
       - /druid/**
       - /sso/login
+      - /home/**
+      - /product/**
 
 #自定义elasticsearch属性
 elasticsearch:

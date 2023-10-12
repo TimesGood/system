@@ -34,3 +34,8 @@ mybatis:
     - classpath:dao/*.xml
     - classpath*:com/**/mapper/*.xml
     - classpath*:com/**/dao/*.xml
+#springboot日志输出级别
+logging:
+  level:
+    root: info
+    com.example.system: debug
